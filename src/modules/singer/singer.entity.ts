@@ -1,11 +1,5 @@
 import { Gender } from './../../commons/enum/gender';
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  Unique,
-  OneToOne,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity('singer')
 export class Singer {
   @PrimaryGeneratedColumn()
@@ -25,10 +19,4 @@ export class Singer {
 
   @Column()
   gender: Gender;
-
-  @OneToOne(
-    type => User,
-    user => user.profile,
-  )
-  user: User;
 }
