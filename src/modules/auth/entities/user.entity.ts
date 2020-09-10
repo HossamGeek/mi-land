@@ -1,5 +1,5 @@
 import { Profile } from './../../profile/profile.entity';
-import { Auth } from './../../../commons/classes/auth';
+import { Auth } from '../../../commons/classes/auth.class';
 import { Role } from './../../../commons/enum/role';
 import {
   Entity,

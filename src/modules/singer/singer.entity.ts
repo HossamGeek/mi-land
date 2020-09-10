@@ -1,22 +1,14 @@
-import { Gender } from './../../commons/enum/gender';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { SingerAlbum } from './singer-album/singer-album.entity';
+import { Entity, OneToMany } from 'typeorm';
+import { Artist } from 'src/commons/classes/artist.abstract';
 @Entity('singer')
-export class Singer {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
-  name: string;
-
-  @Column()
-  info: string;
-
-  @Column()
-  image: string;
-
-  @Column()
-  type: string;
-
-  @Column()
-  gender: Gender;
+export class Singer extends Artist {
+  @OneToMany(
+    type => SingerAlbum,
+    singerAlbum => singerAlbum.singer,
+    {
+      eager: true,
+    },
+  )
+  singerAlbums: SingerAlbum[];
 }

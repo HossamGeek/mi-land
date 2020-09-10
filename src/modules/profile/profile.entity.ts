@@ -8,7 +8,7 @@ import {
   OneToOne,
 } from 'typeorm';
 @Entity('profile')
-@Unique(['phone'])
+@Unique(['phone', 'username'])
 export class Profile {
   @PrimaryGeneratedColumn()
   id: number;
@@ -17,6 +17,9 @@ export class Profile {
   firstname: string;
   @Column()
   lastname: string;
+
+  @Column()
+  username: string;
 
   @Column()
   age: number;
