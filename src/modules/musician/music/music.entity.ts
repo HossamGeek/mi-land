@@ -1,6 +1,7 @@
+import { Track } from './../../track/track.entity';
 import { MusicParent } from 'src/commons/classes/music.abstract';
 import { MusicEnum } from './../../../commons/enum/music';
-import { Entity, ManyToOne, Column } from 'typeorm';
+import { Entity, ManyToOne, Column, OneToMany } from 'typeorm';
 import { MusicianAlbum } from '../musician-album/musician-album.entity';
 @Entity('music')
 export class Music extends MusicParent {
@@ -16,6 +17,13 @@ export class Music extends MusicParent {
     musicianAlbum => musicianAlbum.musics,
   )
   musicianAlbum: MusicianAlbum;
+
+  @OneToMany(
+    type => Track,
+    track => track.music,
+    { eager: true },
+  )
+  tracks: Track[];
 
   @Column()
   albumId: number;

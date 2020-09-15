@@ -1,3 +1,4 @@
+import { Favorite } from './../favorite/favorite.entity';
 import { User } from './../auth/entities/user.entity';
 import { Gender } from './../../commons/enum/gender';
 import {
@@ -6,10 +7,12 @@ import {
   Column,
   Unique,
   OneToOne,
+  JoinColumn,
+  BaseEntity,
 } from 'typeorm';
 @Entity('profile')
 @Unique(['phone', 'username'])
-export class Profile {
+export class Profile extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -41,4 +44,14 @@ export class Profile {
     user => user.profile,
   )
   user: User;
+
+  @OneToOne(
+    type => Favorite,
+    favorite => favorite.profile,
+  )
+  @JoinColumn()
+  favorite: Favorite;
+
+  @Column()
+  favoriteId: number;
 }
